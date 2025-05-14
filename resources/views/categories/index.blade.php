@@ -11,7 +11,7 @@
             </div>
         @endif
 
-        <a href="{{ route('categories.create') }}" class="mb-4 inline-block bg-red-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <a href="{{ route('categories.create') }}" class="mb-4 inline-block text-white px-4 py-2 rounded bg-blue-600">
             + Nouvelle Catégorie
         </a>
 
@@ -28,7 +28,13 @@
                     @foreach ($categories as $category)
                         <tr class="border-t">
                             <td class="px-4 py-2">{{ $category->nom }}</td>
-                            <td class="px-4 py-2">{{ $category->image }}</td>
+                            <td class="px-4 py-2">
+                                @if ($category->image)
+                                    <img src="{{ asset('storage/' . $category->image) }}" alt="Image catégorie" style="width: 100px" />
+                                @else
+                                    <span class="text-gray-400 italic">Pas d'image</span>
+                                @endif
+                            </td>
                             <td class="px-4 py-2">
                                 <a href="{{ route('categories.edit', $category->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">
                                     Modifier
